@@ -1,0 +1,17 @@
+/*
+26/10-21:54
+ En la actualizacion, he ampliado el metodo
+publiv void run de controller.jaa, el cual realiza el encendido del programa y empieza el ciclo de juego con las opciones que debe ejecutar y dejar elegir.
+En game.java he incluido una funcion gameOver, la cual cuando sea true(que lo sera solo cuando el jugador ponga en la linea de comandos Exit("E").
+El resto de actualizaciones de clases son para ponerlas como danimu03 las tenia en su programa, lo unico nuevo esta en controller.java y game.java
+
+27/10: Cambios1: en vampirelist, nuevas funciones para complementar la funcion mayor de gameobjectBoard removeDead();, 
+cambios en slayerlist para poder tambien complementar la funcion removeDead().
+
+duda1: he creado un metodo que devuelve el numero de vampires/slayer del array de vampirelist y slayerlist, tu tienes algo parecido con vampire.cnt??
+
+Cambios2: en gamePrinter.java he tenido que hacer que board sea un atributo publico para poder eliminar un vampiro o slayer muerto. He puesto el metodo de board
+ encodeGame publico para poder modificar board cuando haya un slayer o vampire dead.
+Cambios3: He crado la funcion isRowempty que el profesor dijo que seria necesaria para comprobar si una fila esta vacia, servira, para el tema de disparar etc.
+
+*/
