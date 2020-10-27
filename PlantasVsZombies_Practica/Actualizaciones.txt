@@ -14,4 +14,6 @@ Cambios2: en gamePrinter.java he tenido que hacer que board sea un atributo publ
  encodeGame publico para poder modificar board cuando haya un slayer o vampire dead.
 Cambios3: He crado la funcion isRowempty que el profesor dijo que seria necesaria para comprobar si una fila esta vacia, servira, para el tema de disparar etc.
 
+
+end.
 */
