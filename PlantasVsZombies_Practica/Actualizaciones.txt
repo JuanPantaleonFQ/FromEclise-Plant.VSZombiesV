@@ -15,5 +15,5 @@ Cambios2: en gamePrinter.java he tenido que hacer que board sea un atributo publ
 Cambios3: He crado la funcion isRowempty que el profesor dijo que seria necesaria para comprobar si una fila esta vacia, servira, para el tema de disparar etc.
 
 
-end.
+end
 */
