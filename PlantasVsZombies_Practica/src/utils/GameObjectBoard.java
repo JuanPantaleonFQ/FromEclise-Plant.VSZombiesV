@@ -2,8 +2,7 @@ package utils;
 
 import Elements.SlayerList;
 import Elements.VampireList;
-import logic.Game;
-import view.GamePrinter;
+
 
 
 public class GameObjectBoard {
@@ -12,18 +11,18 @@ public class GameObjectBoard {
 		
 		private SlayerList s;
 		private VampireList v;
-	   	private Game g;
-	   	private GamePrinter printer;
 	   	
 	   	//constructores
-	    public GameObjectBoard (int max) {
-	        this.v = new VampireList(max);
-	        this.s = new SlayerList(max);
+	    public GameObjectBoard (int maxV, int maxS) {
+	        this.v = new VampireList(maxV);
+	        this.s = new SlayerList(maxS);
 	    }
 	    
 	    //setter y getters
 
-	    public VampireList getV() {
+	
+
+		public VampireList getV() {
 	        return v;
 	    }
 
@@ -54,14 +53,27 @@ public class GameObjectBoard {
 			return avaible;
 		}
 	    
-	  //metodo para añadir un slayer e incrementar el contador del array de slayers
+	  //metodo para añadir un slayer 
 		public void addToS (int x, int y) {
 			s.addElement(x, y);
-			SlayerList.cnt++;
 		}
 		
+		public void addToV (int x, int y) {
+			v.addElement(x, y);
+		}
+		
+		
+		public boolean moreVampire(int n) {
+			boolean more = true;
+			if(n == v.getTotalV()) {
+				more = false;
+			}
+			return more;
+		}
+		
+		
 		public String posString(int x, int y) {
-			String pos= "";
+			String pos;
 			pos = v.vampireToString(x, y);
 			if (pos.equals("")) {
 				pos = s.slayerToString(x, y);
@@ -69,51 +81,54 @@ public class GameObjectBoard {
 			return pos;
 		}
 		
-		//metodo para eliminar un slayer o un vampire si estos han muerto
-		//se comprueba en todo el tablero si hay un slayer con vida=0 o un vampire con vida = 0 
-		// y se elimina del tablero.
-		public void removeDead() {
-			
-			int numberVampires = v.numberVampires();
-			int numberSlayers = s.numberSlayers();
-			for (int i = 0; i < numberVampires; i++) {
-				if (v.vampireHealth(i) == 0) {
-					//remover del tablero
-					printer.board[v.getXvampireI(i)][v.getYvampireI(i)] = "";
-				
-					
-				}				
-			}
-			for (int i = 0; i < numberSlayers; i++) {
-				if (v.vampireHealth(i) == 0) {
-					//remover del tablero
-					printer.board[s.getXsLayerI(i)][s.getYslayerI(i)] = "";
-					
-					
-				}				
-			}				
+		public int numberOfV() {
+			return v.getTotalV();
 		}
 		
-		//metodo que comprueba si una fila esta vacia de cualquier objeto con " ".
-		
-		public boolean isRowempty(int row) {
-			boolean empty = true;
-			
-			for (int i = 0; i < printer.showNumCols() ; i++) {
-				if (printer.board[row][i] == "") {
-					empty = true;
-					
-					
-				}
-				else {
-					empty = false;
-				}
-				
-				
-			}
-			return empty;
-			
-			
+		public int vampiresOnBoard() {
+			return v.getCnt();
 		}
-
+		
+		public void advanceVampire() {
+			for(int i = 0; i < v.getCnt(); i++) {
+				if (positionAvaible(v.getXvampireI(i), v.getYvampireI(i)-1)) {
+					v.advanceVampire(i);
+				}
+			}
+		}
+		
+		public void slayerAttack() {
+			for(int i = 0; i < s.getCnt(); i++) {
+				v.shotVampire(s.giveShot(i));
+			}
+		}
+		
+		public void vampireAttack() {
+			for(int i = 0; i < v.getCnt(); i++) {
+				s.bitteSlayer(v.giveBitteX(i), v.giveBitteY(i));
+			}
+		}
+		
+		public void updateObjects() {
+			v.removeVampire();
+			s.removeSlayer();
+		}
+		
+		public void resetBoard() {
+			v.iniCnt();
+			s.iniCnt();
+		}
+		
+		public boolean endGame(int maxVampires) {
+			boolean end = false;
+			if(v.isVampireFinal()) {
+				end = true;
+				System.out.println("GAME OVER \nVampires win");
+			}
+			else if (v.noMoreVampires(maxVampires)){
+				end = true;
+				System.out.println("GAME OVER \nPlayer win");
+			}
+			return end;
+		}
 }

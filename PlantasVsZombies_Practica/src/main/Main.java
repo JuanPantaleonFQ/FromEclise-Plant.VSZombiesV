@@ -1,3 +1,5 @@
+package main;
+
 import java.util.Scanner;
 import logic.Level;
 import control.Controller;
@@ -47,4 +49,7 @@ public class Main {
 			}
 		}
 	}
+	
 }
+
+	

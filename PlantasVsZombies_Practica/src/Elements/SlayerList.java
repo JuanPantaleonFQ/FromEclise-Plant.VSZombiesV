@@ -2,12 +2,13 @@ package Elements;
 
 public class SlayerList {
 	//attibutes
-	Slayer[] sl;
-	public static int cnt;
+	private Slayer[] sl;
+	private int cnt;
 	
 	//constructor
 	public SlayerList(int max) {
 		this.sl = new Slayer[max];
+		this.cnt = 0;
 	}
 
 	//metodos:
@@ -17,7 +18,7 @@ public class SlayerList {
 	public boolean isSlayerHere(int x, int y) {
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < SlayerList.cnt) {
+		while (!isHere && i < this.cnt) {
 			isHere = sl[i].equals(x, y);
 			i++;
 		}
@@ -26,7 +27,8 @@ public class SlayerList {
 	
 	//metodo que crea un nuevo objeto slayer y lo añade al array
 	public void addElement(int x, int y) {
-		sl[cnt] = new Slayer(x, y);
+		sl[this.cnt] = new Slayer(y, x);
+		this.cnt++;
 		
 	}
 	
@@ -37,14 +39,13 @@ public class SlayerList {
 		String slayer;
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < VampireList.cnt) {
+		while (!isHere && i < this.cnt) {
 			isHere = sl[i].equals(x, y);
 			i++;
 		}
-		/*Lo que hace este while es: ¿Hay algun slayer en la posicion del array de slayer i, con coordenadas x y?*/
-		
 		if (isHere) {
-			slayer = " S [" + sl[i--].getHealth() + "] ";
+			i--;
+			slayer = sl[i].toString();
 		}
 		else {
 			slayer = "       ";
@@ -53,9 +54,55 @@ public class SlayerList {
 		return slayer;
 	}
 	
+	
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	
+	public int giveShot(int pos) {
+		return sl[pos].getX();
+	}
+	
+	public void bitteSlayer(int x, int y) {
+		for(int i = 0; i < this.cnt; i++) {
+			if (sl[i].equals(x, y-1)) {
+				sl[i].setHealth(1);
+			}
+		}
+	}
+	
+	public void removeSlayer() {
+		for(int i=0; i < this.cnt; i++) {
+			if (sl[i].isDead()) {
+				for(int j=i; j < (this.cnt-1) ; j++) {
+					sl[j] = sl[j+1];
+					
+				}
+				this.cnt--;
+			}
+		}
+	}
+	
+	
+	public void iniCnt() {
+		this.cnt = 0;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
 	//metodo que devuelve el numero de slayer que hay.
 	public int numberSlayers() {
-		
 		
 		return sl.length;
 				

@@ -17,29 +17,18 @@ public class GamePrinter {
 		this.game = game;
 		this.numRows = rows;
 		this.numCols = cols;
-		
+		board = new String[rows][cols];
 	}
 	
 	public void encodeGame(Game game) {
-		
-		board = new String[this.numRows][this.numCols];
+		System.out.println(game);
 		for(int i = 0; i < this.numRows; i++) {
 			for (int j = 0; j < this.numCols; j++) {
-				board[i][j] = game.positionToString(i, j);
+				board[i][j] = game.positionToString(i+1, j+1);
 			}
 		}
-		// board [numRows][numCols];
 	}
 	
-	//metodos para enseñar el numero de columnas y filas a Board.
-	public int showNumRows() {
-		return numRows;
-		
-	}
-	
-	public int showNumCols() {
-		return numCols;
-	}
 	
 	 public String toString() {
 		encodeGame(game);

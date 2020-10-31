@@ -8,7 +8,7 @@ public enum Level {
 	private double vampireFrequency;
 	private int dim_x, dim_y;
 
-	private Level(String name, int numberOfVampires, double vampireFrequency, int dim_x, int dim_y) {
+	private Level(String name, int numberOfVampires, double vampireFrequency, int dim_y, int dim_x) {
 		this.name = name;
 		this.numberOfVampires = numberOfVampires;
 		this.vampireFrequency = vampireFrequency;
@@ -20,8 +20,24 @@ public enum Level {
 	 public int getDim_y() {
 			return dim_y;
 		}
+	 
+    public double getVampireFrequency() {
+		return vampireFrequency;
+	}
 
-    public static Level parse(String inputString) {
+	public void setVampireFrequency(double vampireFrequency) {
+		this.vampireFrequency = vampireFrequency;
+	}
+
+	public int getNumberOfVampires() {
+		return numberOfVampires;
+	}
+
+	public void setNumberOfVampires(int numberOfVampires) {
+		this.numberOfVampires = numberOfVampires;
+	}
+
+	public static Level parse(String inputString) {
         for (Level level : Level.values())
             if (level.name().equalsIgnoreCase(inputString)) 
             	return level;
@@ -34,5 +50,18 @@ public enum Level {
             allLevels += level.name() + separator;
         return allLevels.substring(0, allLevels.length() - separator.length());
     }
+
+	public void setDim_y(int dim_y) {
+		this.dim_y = dim_y;
+	}
+
+	public int getDim_x() {
+		return dim_x;
+	}
+
+	public void setDim_x(int dim_x) {
+		this.dim_x = dim_x;
+	}
+
 
 }

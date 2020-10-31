@@ -19,7 +19,11 @@ public class Slayer {
 		public boolean equals(int x, int y) {
 		return (this.x == x && this.y == y);
 		}
-
+		
+		public boolean isDead() {
+			return (this.health <= 0);
+			}
+	
 		// getters & setters
 		public int getX() {
 			return x;
@@ -35,7 +39,11 @@ public class Slayer {
 		}
 	
 		public void setHealth(int health) {
-			this.health = health;
+			this.health -= health;
+		}
+		
+		public String toString() {
+			return " S [" + this.health + "] ";
 		}
 
 }
