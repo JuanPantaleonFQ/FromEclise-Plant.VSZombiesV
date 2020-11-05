@@ -18,8 +18,10 @@ public class GameObjectBoard {
 	        this.s = new SlayerList(maxS);
 	    }
 	    
-	    //setter y getters
-		
+	    //setter y getters(todo mal) debemos hacer metodos que busque el x y si lo encuentra devuelve true y sino false.
+		public VampireList getV() {
+	        return v;
+	    }
 
 	    public void setV(VampireList v) {
 	        this.v = v;
