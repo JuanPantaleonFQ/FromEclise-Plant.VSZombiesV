@@ -1,17 +1,17 @@
 package Elements;
 
 public class SlayerList {
-	//attibutes
+	
 	private Slayer[] sl;
 	private int cnt;
 	
-	//constructor
+	//CONSTRUCTOR
 	public SlayerList(int max) {
 		this.sl = new Slayer[max];
 		this.cnt = 0;
 	}
 
-	//metodos:
+
 	
 	//metodo que recibe una posicion, busca dentro de la lista de slayers
 	//si existe un objeto con las mismas coordenadas y si existe devuelve true
@@ -54,20 +54,25 @@ public class SlayerList {
 		return slayer;
 	}
 	
-	
+	//Getter
 	public int getCnt() {
 		return cnt;
 	}
-
+	//Setter
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
 	
 	
+	//Metodo que recibe una posicion, y devuelve la fila del slayer que se encuentra en esa posicion
+	//del array
 	public int giveShot(int pos) {
 		return sl[pos].getX();
 	}
 	
+	
+	//Metodo que recibe una coordenadas de un vampiro y si existe un slayer a su derecha
+	//actualiza su vida decrementandola
 	public void bitteSlayer(int x, int y) {
 		for(int i = 0; i < this.cnt; i++) {
 			if (sl[i].equals(x, y-1)) {
@@ -76,6 +81,11 @@ public class SlayerList {
 		}
 	}
 	
+	//Metodo que recorre el array de slayers eliminando los que hayan muerto
+	//El primer for recorre el array completo de slayers
+	//El if controla si el slayer de esa vuelta de bucle está muerto
+	//El segundo for elimina del array ese ese slayer
+	//Se controla el contador
 	public void removeSlayer() {
 		for(int i=0; i < this.cnt; i++) {
 			if (sl[i].isDead()) {
@@ -88,38 +98,15 @@ public class SlayerList {
 		}
 	}
 	
-	
+	//Metodo que inicializa el contador de slayers a 0
 	public void iniCnt() {
 		this.cnt = 0;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-
-	//metodo que devuelve el numero de slayer que hay.
-	public int numberSlayers() {
-		
-		return sl.length;
-				
-		
+	//Metodo que recibe una posicion, y devuelve el Health del slayer que contiene esa posicion del array
+	public int getHealth(int pos) {
+		return sl[pos].getHealth();
 	}
-	
-	//retorna la vida de un vampire en una posicion i:
-		public int slayerHealth(int i) {
-			return sl[i].getHealth();
-		}
-		
-		public int getXsLayerI(int i) {
-			return sl[i].getX();
-		}
-		public int getYslayerI(int i) {
-			return sl[i].getY();
-		}
 	
 
 }

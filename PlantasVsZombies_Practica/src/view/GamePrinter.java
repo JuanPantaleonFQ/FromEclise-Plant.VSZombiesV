@@ -20,6 +20,9 @@ public class GamePrinter {
 		board = new String[rows][cols];
 	}
 	
+	//Metodo que recorre el array bidimensional de string con 2 bucles for
+	//Y por cada posicion llama al metodo de game que devuelve el contenido del tablero en esa posicion
+	//Y lo almacena
 	public void encodeGame(Game game) {
 		System.out.println(game);
 		for(int i = 0; i < this.numRows; i++) {

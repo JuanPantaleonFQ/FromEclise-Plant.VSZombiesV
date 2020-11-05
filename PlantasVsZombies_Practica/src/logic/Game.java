@@ -11,12 +11,12 @@ public class Game {
 	private GameObjectBoard board;
 	private Level level;
 	private Random r;
-	private boolean fin;
+	private boolean fin; //controla el fin del juego
 	private int cycles;
-	private boolean reset;
+	private boolean reset; //controla si el juego va a ser reseteado
 	
 	
-	
+	//CONSTRUCTOR
 	public Game(Long seed, Level level) {
 		this.r = new Random(seed);
 		this.level = level;
@@ -27,13 +27,18 @@ public class Game {
 		this.reset = false;
 	}
 	
+	//Metodo que develve un string con la informacion general del juego
 	public String infoGeneral () {
 		return "Number of cycles: " + cycles + "\n" +
 		"Coins: " + player.getCoins() + "\n" +
 		"Remaining vampires: " + (level.getNumberOfVampires() - board.numberOfV()) + "\n" +
 		"Vampires on the board: " + board.vampiresOnBoard() + "\n\n";
-  }
+	}
 	
+	//Metodo que determina aleatoriamente si se va añadir un vampiro
+	//Determina tambien aleatoriamente la posicion donde va a aparecer (siempre en la ultima columna, pero distinta fila)
+	//Controla si esta posicion generada aleatoriamente esta vacia
+	//Si todas las premisas se cumplen añade el vampiro
 	public void AddVampire() {
 		int posX = Math.abs(r.nextInt() % (level.getDim_x())) + 1;
 		if((board.positionAvaible(posX, level.getDim_y()))&&(board.moreVampire(level.getNumberOfVampires())) && (r.nextDouble() <= level.getVampireFrequency()))  {
@@ -41,6 +46,10 @@ public class Game {
 		}
 	}
 	
+	//Metodo que añade un vampiro en la posicion que recibe en los parametros
+	//Controlando que el jugador tenga monedas suficientes
+	//Controlando si no existe otro elemento en el tablero
+	//Controlando si las coordenadas son validas
 	public boolean AddSlayer(int x, int y){
 		boolean ok = false;
 		if (!player.areCoins()) {
@@ -68,16 +77,21 @@ public class Game {
 	}
 	
 	
+	//Metodo que recibe unas coordenadas y llaman a un metodo de GameObjectBoard para devolver 
+	//un string con las caracteristicas deseadas
 	public String positionToString(int x, int y) {
-		String pos;
-		pos = board.posString(x, y);
-		return pos;
+		return board.posString(x, y);	
 	}
 	
+	//Sobreescritura del metodo string
 	public String toString() {
 		return infoGeneral();
 	}
 	
+	//Metodo que actualiza el estado del juego
+	//Realiza el avance de los vampiros
+	//Incrementa aleatoriamente el numero de monedas 
+	//Elimina los elementos muertos de la partida
 	public void update() {
 		board.advanceVampire();
 		if(r.nextDouble() <= 0.5 ) {
@@ -89,19 +103,22 @@ public class Game {
 		
 	}
 	
+	//Metodo que realiza el ataque de los vampiros y los slayers
+	//Consideramos que primero atacan los vampiros
 	public void attack() {
-		board.slayerAttack();
 		board.vampireAttack();
+		board.slayerAttack();
 	}
 	
+	//Getter & Setter
 	public boolean getFin() {
 		return fin;
 	}
-
 	public void setFin(boolean fin) {
 		this.fin = fin;
 	}
 	
+	//Metodo que resetea el juego
 	public void reset() {
 		board.resetBoard();
 		this.cycles = 0;
@@ -109,30 +126,29 @@ public class Game {
 		
 	}
 	
+	//Metodo que actualiza el valor del atributo fin, controlando si el juego ha terminando
 	public void gameOver() {
 		this.fin = board.endGame(level.getNumberOfVampires());
 	}
 	
+	//Getters que devuelven las dimensiones del tablero
 	public int maxX() {
 		return level.getDim_x();
 	}
-	
 	public int maxY() {
 		return level.getDim_y();
 	}
 
+	//Getters & Setters
 	public int getCycles() {
 		return cycles;
 	}
-
 	public void setCycles() {
 		this.cycles++;
 	}
-	
 	public void updateReset(boolean bool) {
 		this.reset = bool;
 	}
-
 	public boolean isReset() {
 		return this.reset;
 	}

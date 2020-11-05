@@ -8,7 +8,7 @@ import view.GamePrinter;
 public class Controller {
 	
 	//Attributes
-	private Game game;
+	private Game game; 
 	private Scanner scanner;
 	private GamePrinter printer;
 
@@ -27,20 +27,25 @@ public class Controller {
 	public static final String invalidPositionMsg = String.format("Invalid position");
 
   
-    
+    //CONSTRUCTOR
     public Controller(Game game, Scanner scanner) {
 	    this.game = game;
 	    this.scanner = scanner;
 	    this.printer = new GamePrinter(game, game.maxY(), game.maxX());
     }
     
+    //Método que llama al metodo toString de la clase GamePrinter e imprime por pantalla el string devuelto
     public void  printGame() {
    	 System.out.println(printer);
-   }
+    }
     
+    //Método que recibe el comando introducido por el usuario por consola y controla su flujo
+    //Devuelve true en caso de que el usuario haya introducido un comando correcto y se deba avanzar ciclo
+    //Devuelve false si el comando introducido es incorrecto o no se debe avanzar turno
+    //Además controla la ejecución de la opción deseada llamando a los métodos de la clase game segun sea necesario
     public boolean userCommand(String[]words) {
     	boolean ok = false;
-    	if (words[0].equals("add")) {
+    	if (words[0].equals("add") || (words[0].equals("a"))) {
     		int xpos = Integer.parseInt(words[2]);
     		int ypos = Integer.parseInt(words[1]);
     		ok = game.AddSlayer(xpos,ypos);
@@ -55,7 +60,6 @@ public class Controller {
     		ok = true;
 		}
     	else if(words[0].equals("exit") || (words[0].equals("e"))){
-    		System.out.println("¡Game over!");
     		ok = true;
     		game.setFin(true);
     		System.out.println("GAME OVER");
@@ -72,6 +76,11 @@ public class Controller {
     	return ok;
     }
     
+    //Método que controla el flujo de una partida
+    //El pimer bucle while controla el flujo de una partida
+    //El segundo bucle controla que el ciclo no avance hasta que el usuario haya introducido una opcion valida
+    //El if final controla que se incremente el numero de ciclos y se evalue un posible fin de partida solo si
+    //el usuario no ha seleccionado la opcion exit o reset
     public void run() {
     	boolean comand; 
     	

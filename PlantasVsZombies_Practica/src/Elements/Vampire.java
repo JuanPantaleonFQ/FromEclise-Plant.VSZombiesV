@@ -3,14 +3,13 @@ package Elements;
 
 
 public class Vampire {
-	// Attributes
 
 	private int x;
 	private int y;
 	private int health;
-	private int progress;
+	private int progress; // Atributo para controlar el avance cada 2 ciclos
 
-	// constructor:
+	// CONSTRUCTOR
 	public Vampire(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -28,7 +27,6 @@ public class Vampire {
 		
 	}
 	
-	
 	public int getHealth() {
 		return health;
 	}
@@ -43,19 +41,24 @@ public class Vampire {
 		return (this.x == x && this.y == y);
 	}
 	
+	//Sobreescribimos el metodo equals para comparar unicamente la posiciones x
 	public boolean equals(int x) {
 		return (this.x == x);
 	}
 	
+	//Metodo que controla si el vampiro está muerto
 	public boolean isDead() {
 		return (this.health <= 0);
 	}
 	
+	//Metodo que controla si un vampiro ha llegado a la columna 1 del tablero
 	public boolean end() {
 		return (this.y == 1);
 	}
 	
 	//Metodo que controla el avance de un vampiro cada dos turnos
+	//1- No avanza
+	//2- Avanza, resetea progrees a 0
 	public void advanceVampire() {
 		this.progress++;
 		if(this.progress == 2) {
@@ -64,6 +67,7 @@ public class Vampire {
 		}
 	}
 	
+	//Sobreescribimos el metodo toString para devolver la vida del vampiro en el formato deseado
 	public String toString() {
 		return " V [" + this.health + "] ";
 	}

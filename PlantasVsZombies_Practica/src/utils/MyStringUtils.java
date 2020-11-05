@@ -12,6 +12,7 @@ public class MyStringUtils {
 		}
 		return result;
 	}
+	
 
 	public static String centre(String text, int len){
 	    String out = String.format("%"+len+"s%s%"+len+"s", "",text,"");

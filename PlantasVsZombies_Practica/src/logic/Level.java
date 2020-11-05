@@ -28,7 +28,7 @@ public enum Level {
 	public void setVampireFrequency(double vampireFrequency) {
 		this.vampireFrequency = vampireFrequency;
 	}
-
+	//retorna el numero de vampiros
 	public int getNumberOfVampires() {
 		return numberOfVampires;
 	}
