@@ -107,8 +107,9 @@ public class Game {
 	//Metodo que realiza el ataque de los vampiros y los slayers
 	//Consideramos que primero atacan los vampiros
 	public void attack() {
-		board.vampireAttack();
 		board.slayerAttack();
+		board.vampireAttack();
+		
 	}
 	
 	//Getter & Setter

@@ -31,6 +31,9 @@ public class Vampire {
 		return health;
 	}
 
+	
+	//metodos:
+	
 	public void setHealth(int health) {
 		this.health -= health;
 	}

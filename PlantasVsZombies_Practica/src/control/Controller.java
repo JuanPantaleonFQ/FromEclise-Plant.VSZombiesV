@@ -89,17 +89,18 @@ public class Controller {
     		game.attack();
     		game.update();
 			game.AddVampire();
-			printGame();
+			
 			do {
     			String line = scanner.nextLine();
     	    	String[]words =line.toLowerCase().trim().split("\\s+");	
     	    	comand = userCommand(words);
     		}while (!comand); //bucle que se ejecuta hasta que el comanndo introducido es correcto
-			
+			printGame();
 			if (!game.getFin() && !game.isReset()) {
 				game.setCycles();
 				game.gameOver();
 			}
+			
 		} 
     }
 

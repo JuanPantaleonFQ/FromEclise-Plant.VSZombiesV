@@ -164,5 +164,10 @@ public class VampireList {
 		}
 		return end;
 	}
+	
+	//Metodo que recibe una posicion, y devuelve el Health del vampire que contiene esa posicion del array
+		public int getHealth(int pos) {
+			return vl[pos].getHealth();
+		}
 
 }
