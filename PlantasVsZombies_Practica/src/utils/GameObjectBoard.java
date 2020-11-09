@@ -18,22 +18,7 @@ public class GameObjectBoard {
 	        this.s = new SlayerList(maxS);
 	    }
 	    
-	    //setter y getters(todo mal) debemos hacer metodos que busque el x y si lo encuentra devuelve true y sino false.
-		public VampireList getV() {
-	        return v;
-	    }
-
-	    public void setV(VampireList v) {
-	        this.v = v;
-	    }
-
-	    public SlayerList getS() {
-	        return s;
-	    }
-
-	    public void setS(SlayerList s) {
-	        this.s = s;
-	    }
+	   
 	
 	
 	    //Metodo que recibe unas coordenadas, realiza una busqueda y devuelve si existe o no un objeto

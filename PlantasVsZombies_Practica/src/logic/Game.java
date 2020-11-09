@@ -27,13 +27,7 @@ public class Game {
 		this.reset = false;
 	}
 	
-	//Metodo que develve un string con la informacion general del juego
-	public String infoGeneral () {
-		return "Number of cycles: " + cycles + "\n" +
-		"Coins: " + player.getCoins() + "\n" +
-		"Remaining vampires: " + (level.getNumberOfVampires() - board.numberOfV()) + "\n" +
-		"Vampires on the board: " + board.vampiresOnBoard() + "\n\n";
-	}
+	
 	
 	//Metodo que determina aleatoriamente si se va añadir un vampiro
 	//Determina tambien aleatoriamente la posicion donde va a aparecer (siempre en la ultima columna, pero distinta fila)
@@ -76,6 +70,13 @@ public class Game {
 		return ok;
 	}
 	
+	//Metodo que develve un string con la informacion general del juego
+		public String infoGeneral () {
+			return "Number of cycles: " + cycles + "\n" +
+			"Coins: " + player.getCoins() + "\n" +
+			"Remaining vampires: " + (level.getNumberOfVampires() - board.numberOfV()) + "\n" +
+			"Vampires on the board: " + board.vampiresOnBoard() + "\n\n";
+		}
 	
 	//Metodo que recibe unas coordenadas y llaman a un metodo de GameObjectBoard para devolver 
 	//un string con las caracteristicas deseadas
