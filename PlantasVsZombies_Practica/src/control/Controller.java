@@ -75,6 +75,11 @@ public class Controller {
     	return ok;
     }
     
+    public void removeDead() {
+    	game.removeDeadVampireAndSlayer();
+    	
+    }
+    
     //Método que controla el flujo de una partida
     //El pimer bucle while controla el flujo de una partida
     //El segundo bucle controla que el ciclo no avance hasta que el usuario haya introducido una opcion valida
@@ -86,8 +91,10 @@ public class Controller {
     	while(!game.getFin()) {
     		game.updateReset(false);
     		game.vampireAttack();
+    		removeDead();
     		game.update();
     		game.slayerAtack();
+    		removeDead();
 			game.AddVampire();
 			
 			do {

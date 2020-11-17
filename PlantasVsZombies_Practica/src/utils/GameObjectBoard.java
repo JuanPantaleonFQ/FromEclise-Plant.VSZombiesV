@@ -101,7 +101,7 @@ public class GameObjectBoard {
 		//Metodo que ejecuta el ataque de todos los vampiros del tablero
 		public void vampireAttack() {
 			for(int i = 0; i < v.getCnt(); i++) {
-				if (v.getHealth(i) > 0) {
+				
 					s.bitteSlayer(v.giveBitteX(i), v.giveBitteY(i));					
 				}
 				

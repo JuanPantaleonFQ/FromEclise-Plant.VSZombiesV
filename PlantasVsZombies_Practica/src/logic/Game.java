@@ -119,21 +119,26 @@ public class Game {
 				player.setCoins(10);
 			}
 		}
-		
-		
+				
 	}
 	
 	//Metodo que realiza el ataque de los vampiros y los slayers
 	//Consideramos que primero atacan los vampiros
 	public void vampireAttack() {
 		board.vampireAttack();
-		board.updateVampire();
+		
 		
 	}
 	
 	public void slayerAtack() {
 		board.slayerAttack();
+		
+	}
+	
+	public void removeDeadVampireAndSlayer() {
+		board.updateVampire();		
 		board.updateSlayer();
+		
 	}
 	
 	

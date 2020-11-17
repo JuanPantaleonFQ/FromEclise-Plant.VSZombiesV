@@ -178,6 +178,14 @@ public class VampireList {
 		}
 		
 		//COSOS NUEVOS:
+		public void vampireAtack() {
+			
+		for(int i = 0; i < v.getCnt(); i++) {
+			
+			s.bitteSlayer(v.giveBitteX(i), v.giveBitteY(i));					
+		}
+		
+	}
 		
 		
 
