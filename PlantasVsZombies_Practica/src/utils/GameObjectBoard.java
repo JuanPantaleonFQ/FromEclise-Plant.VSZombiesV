@@ -92,7 +92,7 @@ public class GameObjectBoard {
 		//Metodo que ejecuta el ataque de todos los slayers del tablero
 		public void slayerAttack() {
 			for(int i = 0; i < s.getCnt(); i++) {
-				if(s.getHealth(i) > 0) {
+				
 					v.shotVampire(s.giveShot(i));
 				}
 			}
@@ -109,9 +109,12 @@ public class GameObjectBoard {
 		}
 		
 		//Metodo que elimina todos los elementos sin vida del tablero
-		public void updateObjects() {
-			v.removeVampire();
+		public void updateSlayer() {
 			s.removeSlayer();
+		}
+		
+		public void updateVampire() {
+			v.removeVampire();
 		}
 		
 		//metodo que resetea los contadores del juego
@@ -119,6 +122,8 @@ public class GameObjectBoard {
 			v.iniCnt();
 			s.iniCnt();
 		}
+		
+		
 		
 		//Metodo que chequea un fin del juego, para ello recibe el numero maximo de vampiros que pueden aparecer
 		//Controla el ganador

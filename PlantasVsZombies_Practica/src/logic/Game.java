@@ -2,8 +2,6 @@ package logic;
 
 import Elements.Player;
 import utils.GameObjectBoard;
-
-
 import java.util.Random;
 
 public class Game {
@@ -27,7 +25,28 @@ public class Game {
 		this.reset = false;
 	}
 	
+	//Getters & Setters
+		public int getCycles() {
+			return cycles;
+		}
+		public void setCycles() {
+			this.cycles++;
+		}
+		public void updateReset(boolean bool) {
+			this.reset = bool;
+		}
+		public boolean isReset() {
+			return this.reset;
+		}
+		//Getter & Setter
+		public boolean getFin() {
+			return fin;
+		}
+		public void setFin(boolean fin) {
+			this.fin = fin;
+		}
 	
+	//------------------------------------------ METODOS -------------------------------------------------//
 	
 	//Metodo que determina aleatoriamente si se va añadir un vampiro
 	//Determina tambien aleatoriamente la posicion donde va a aparecer (siempre en la ultima columna, pero distinta fila)
@@ -100,25 +119,25 @@ public class Game {
 				player.setCoins(10);
 			}
 		}
-		board.updateObjects();
+		
 		
 	}
 	
 	//Metodo que realiza el ataque de los vampiros y los slayers
 	//Consideramos que primero atacan los vampiros
-	public void attack() {
-		board.slayerAttack();
+	public void vampireAttack() {
 		board.vampireAttack();
+		board.updateVampire();
 		
 	}
 	
-	//Getter & Setter
-	public boolean getFin() {
-		return fin;
+	public void slayerAtack() {
+		board.slayerAttack();
+		board.updateSlayer();
 	}
-	public void setFin(boolean fin) {
-		this.fin = fin;
-	}
+	
+	
+	
 	
 	//Metodo que resetea el juego
 	public void reset() {
@@ -141,17 +160,5 @@ public class Game {
 		return level.getDim_y();
 	}
 
-	//Getters & Setters
-	public int getCycles() {
-		return cycles;
-	}
-	public void setCycles() {
-		this.cycles++;
-	}
-	public void updateReset(boolean bool) {
-		this.reset = bool;
-	}
-	public boolean isReset() {
-		return this.reset;
-	}
+	
 }

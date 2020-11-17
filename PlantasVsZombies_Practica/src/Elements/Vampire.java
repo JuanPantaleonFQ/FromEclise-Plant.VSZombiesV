@@ -1,5 +1,7 @@
 package Elements;
 
+import logic.Game;
+
 
 
 public class Vampire {
@@ -8,6 +10,7 @@ public class Vampire {
 	private int y;
 	private int health;
 	private int progress; // Atributo para controlar el avance cada 2 ciclos
+	private Game game;
 
 	// CONSTRUCTOR
 	public Vampire(int x, int y) {
@@ -16,6 +19,7 @@ public class Vampire {
 		this.health = 5;
 		this.progress = 0;
 	}
+	//----------------------------------------------------------------------------
 	
 	//setters and getter:
 	public int getX() {
@@ -30,7 +34,8 @@ public class Vampire {
 	public int getHealth() {
 		return health;
 	}
-
+	
+	//----------------------------------------------------------------------------
 	
 	//metodos:
 	
@@ -73,6 +78,13 @@ public class Vampire {
 	//Sobreescribimos el metodo toString para devolver la vida del vampiro en el formato deseado
 	public String toString() {
 		return " V [" + this.health + "] ";
+	}
+	
+	//changes:
+	public void VampireAtack() {
+		
+		
+		
 	}
 
 }

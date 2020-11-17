@@ -62,14 +62,27 @@ public class SlayerList {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
-	
-	
+	//--------------------------------------------------------------------------------------
+	//ESTO DE AQUI ABAJO TAMPOCO.
+	//
+	//
+	//
 	//Metodo que recibe una posicion, y devuelve la fila del slayer que se encuentra en esa posicion
 	//del array
-	public int giveShot(int pos) {
+	/*
+	 * 
+ 	public int giveShot(int pos) {
 		return sl[pos].getX();
 	}
 	
+	//Metodo que recibe una posicion, y devuelve el Health del slayer que contiene esa posicion del array
+	public int getHealth(int pos) {
+		return sl[pos].getHealth();
+	}
+	 */
+	
+		
+	//---------------------------------------------------------------------------------------
 	
 	//Metodo que recibe una coordenadas de un vampiro y si existe un slayer a su derecha
 	//actualiza su vida decrementandola
@@ -103,10 +116,6 @@ public class SlayerList {
 		this.cnt = 0;
 	}
 	
-	//Metodo que recibe una posicion, y devuelve el Health del slayer que contiene esa posicion del array
-	public int getHealth(int pos) {
-		return sl[pos].getHealth();
-	}
 	
 
 }

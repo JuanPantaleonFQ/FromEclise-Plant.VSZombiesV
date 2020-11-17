@@ -109,16 +109,23 @@ public class VampireList {
 			i++;
 		}
 	}
-	
-	
-	//Getter de las coordenadas de un vampiro dada una posicion en el array
+	//-----------------------------------------------------------------------------------
+	// ESTO DE AQUI ABAJO NO
+	//
+	//
+	//
+	/*
+	 * //Getter de las coordenadas de un vampiro dada una posicion en el array
 	public int giveBitteX(int pos) {
 		return vl[pos].getX();
 	}
 	public int giveBitteY(int pos) {
 		return vl[pos].getY();
 	}
+	 */
 	
+	
+	//-----------------------------------------------------------------------------------
 	
 	//Metodo que recorre el array de vampiros eliminando los que hayan muerto
 	//El primer for recorre el array completo de vampiros
@@ -169,5 +176,9 @@ public class VampireList {
 		public int getHealth(int pos) {
 			return vl[pos].getHealth();
 		}
+		
+		//COSOS NUEVOS:
+		
+		
 
 }

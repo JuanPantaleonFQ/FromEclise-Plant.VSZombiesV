@@ -1,10 +1,12 @@
 package Elements;
+import logic.Game;
 
 public class Slayer {
 	// Attributes
 	private int x;
 	private int y;
 	private int health;
+	private Game game;
 
 	//CONSTRUCTOR
 	public Slayer(int y, int x) {
@@ -14,7 +16,8 @@ public class Slayer {
 		
 	}
 	
-
+	//METODOS:
+	
 	//Sobreescribimos el metodo equals para comparar unicamente las posiciones x e y
 	public boolean equals(int x, int y) {
 		return (this.x == x && this.y == y);
