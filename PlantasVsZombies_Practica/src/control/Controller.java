@@ -1,7 +1,6 @@
 package control;
 
 import java.util.Scanner;
-
 import logic.Game;
 import view.GamePrinter;
 
@@ -86,8 +85,9 @@ public class Controller {
     	
     	while(!game.getFin()) {
     		game.updateReset(false);
-    		game.attack();
+    		game.vampireAttack();
     		game.update();
+    		game.slayerAtack();
 			game.AddVampire();
 			
 			do {
