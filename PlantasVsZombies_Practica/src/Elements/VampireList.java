@@ -3,14 +3,12 @@ package Elements;
 public class VampireList {
 
 	private Vampire[] vl;
-	private int cnt; //Contador del array(controla los vampiros que hay en el board)
-	private int totalV; //Contador total de vampiros(controla todos los vampiros que han aparecido en la partida)
+	
 
 	
 	public VampireList(int max) {
 		this.vl = new Vampire[max];
-		this.cnt = 0;
-		this.totalV = 0;
+		
 	}
 	
 	//metodo que recibe una posicion, busca dentro de la lista de vampiros
@@ -18,7 +16,7 @@ public class VampireList {
 	public boolean isVlayerHere(int x, int y) {
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < this.cnt) {
+		while (!isHere && i < Vampire.cnt) {
 			isHere = vl[i].equals(x, y);
 			i++;
 		}
@@ -28,9 +26,9 @@ public class VampireList {
 	//Metodo que crea un nuevo objeto vampiro y lo añade al array
 	//Controla ademas el incremento de
 	public void addElement(int x, int y) {
-		vl[cnt] = new Vampire(x, y);
-		this.cnt++;
-		this.totalV++;
+		vl[Vampire.cnt] = new Vampire(x, y);
+		Vampire.cnt++;
+		Vampire.totalV++;
 		
 	}
 	
@@ -41,7 +39,7 @@ public class VampireList {
 		String vampire;
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < this.cnt) {
+		while (!isHere && i < Vampire.cnt) {
 			isHere = vl[i].equals(x, y);
 			i++;
 		}
@@ -73,21 +71,7 @@ public class VampireList {
 		return vl[i].getY();
 		
 	}
-	public int getTotalV() {
-		return totalV;
-	}
-
-	public void setTotalV(int totalV) {
-		this.totalV = totalV;
-	}
-
-	public int getCnt() {
-		return cnt;
-	}
-
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
+	
 	
 	
 	//Metodo que recibe una posicion, y ejecuta el metodo advanceVampire de la clase Vampire 
@@ -101,7 +85,7 @@ public class VampireList {
 	public void shotVampire(int fila) {
 		boolean shotter = false;
 		int i = 0;
-		while ((i < this.cnt) && !shotter) {
+		while ((i < Vampire.cnt) && !shotter) {
 			if (vl[i].equals(fila)) {
 				vl[i].setHealth(1);
 				shotter = true;
@@ -133,21 +117,21 @@ public class VampireList {
 	//El segundo for elimina del array ese ese slayer
 	//Se controla el contador
 	public void removeVampire() {
-		for(int i=0; i < cnt; i++) {
+		for(int i=0; i < Vampire.cnt; i++) {
 			if (vl[i].isDead()) {
-				for(int j=i; j < cnt; j++) {
+				for(int j=i; j < Vampire.cnt; j++) {
 					vl[j] = vl[j+1];
 					
 				}
-				this.cnt--;
+				Vampire.cnt--;
 			}
 		}
 	}
 	
 	//Metodo que inicializa el contador y el numero de vampiros que han aparecido a 0
 	public void iniCnt() {
-		this.cnt = 0;
-		this.totalV = 0;
+		Vampire.cnt = 0;
+		Vampire.totalV = 0;
 	}
 	
 	//Metodo que controla si algun objeto del array se encuentra en la columna 1 (posible fin de partida)

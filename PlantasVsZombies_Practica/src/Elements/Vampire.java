@@ -11,6 +11,8 @@ public class Vampire {
 	private int health;
 	private int progress; // Atributo para controlar el avance cada 2 ciclos
 	private Game game;
+	public static int totalV = 0;
+	public static int cnt = 0;
 
 	// CONSTRUCTOR
 	public Vampire(int x, int y) {
@@ -81,7 +83,11 @@ public class Vampire {
 	}
 	
 	//changes:
-	public void VampireAtack() {
+	public void VampireAtack() {		
+		if(game.isSlayerHere(x, y-1)) {
+			game.vampireAttack(x,y-1);
+			
+		}
 		
 		
 		

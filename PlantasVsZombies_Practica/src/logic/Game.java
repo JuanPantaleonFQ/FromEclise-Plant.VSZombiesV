@@ -124,8 +124,8 @@ public class Game {
 	
 	//Metodo que realiza el ataque de los vampiros y los slayers
 	//Consideramos que primero atacan los vampiros
-	public void vampireAttack() {
-		board.vampireAttack();
+	public void vampireAttack(int x,int y) {
+		board.vampireAttack(x,y);
 		
 		
 	}
@@ -163,6 +163,12 @@ public class Game {
 	}
 	public int maxY() {
 		return level.getDim_y();
+	}
+	
+	public boolean isSlayerHere(int x , int y) {
+		
+		return (board.SlayerHere(x,y));
+		
 	}
 
 	

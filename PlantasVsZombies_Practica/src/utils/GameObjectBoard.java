@@ -1,5 +1,6 @@
 package utils;
 
+import Elements.Slayer;
 import Elements.SlayerList;
 import Elements.VampireList;
 
@@ -91,21 +92,12 @@ public class GameObjectBoard {
 		
 		//Metodo que ejecuta el ataque de todos los slayers del tablero
 		public void slayerAttack() {
-			for(int i = 0; i < s.getCnt(); i++) {
-				
-					v.shotVampire(s.giveShot(i));
-				}
-			}
+			v.reciveAtack(x,y);
 		}
 		
 		//Metodo que ejecuta el ataque de todos los vampiros del tablero
-		public void vampireAttack() {
-			for(int i = 0; i < v.getCnt(); i++) {
-				
-					s.bitteSlayer(v.giveBitteX(i), v.giveBitteY(i));					
-				}
-				
-			}
+		public void vampireAttack(int x,int y) {
+			s.reciveAtack(x,y);
 		}
 		
 		//Metodo que elimina todos los elementos sin vida del tablero
@@ -139,4 +131,16 @@ public class GameObjectBoard {
 			}
 			return end;
 		}
+		
+		
+		public boolean SlayerHere(int x, int y) {
+			return(s.isSlayerHere(x, y));
+						
+			
+		}
+			
+			
+			
+			
+			
 }

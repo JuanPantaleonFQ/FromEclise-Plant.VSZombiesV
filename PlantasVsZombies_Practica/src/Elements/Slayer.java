@@ -7,6 +7,8 @@ public class Slayer {
 	private int y;
 	private int health;
 	private Game game;
+	public static int cnt = 0;
+	
 
 	//CONSTRUCTOR
 	public Slayer(int y, int x) {
@@ -46,6 +48,10 @@ public class Slayer {
 	//para su salida por pantalla
 	public String toString() {
 		return " S [" + this.health + "] ";
+	}
+	
+	public void dealDamage() {
+		this.health--;
 	}
 
 }
