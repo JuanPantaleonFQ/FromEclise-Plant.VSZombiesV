@@ -6,10 +6,10 @@ import control.Controller;
 import logic.Game;
 
 
-/*
- * Inicialmente el tablero se inicia vacio,en cada casilla solo puede haber una entidad.
- * El juego acaba si al final de un turno no quedan vampiros vivos, o uno de los vampiros llega al final del tablero.
- * hhhh
+/*AUTORES:
+ * JUAN PANTALEÓN FEMENÍA QUEVEDO
+ * DANIEL MUÑOZ GARCIA
+ * 
  * */
 
 public class Main {

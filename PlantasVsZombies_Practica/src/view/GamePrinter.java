@@ -24,7 +24,6 @@ public class GamePrinter {
 	//Y por cada posicion llama al metodo de game que devuelve el contenido del tablero en esa posicion
 	//Y lo almacena
 	public void encodeGame(Game game) {
-		System.out.println(game);
 		for(int i = 0; i < this.numRows; i++) {
 			for (int j = 0; j < this.numCols; j++) {
 				board[i][j] = game.positionToString(i+1, j+1);

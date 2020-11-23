@@ -1,5 +1,6 @@
 package logic;
 
+
 public enum Level {
 	EASY("easy", 3, 0.1, 8, 4), HARD("hard", 5, 0.2, 7, 3), INSANE("insane", 10, 0.3, 5, 6);
 
@@ -28,7 +29,7 @@ public enum Level {
 	public void setVampireFrequency(double vampireFrequency) {
 		this.vampireFrequency = vampireFrequency;
 	}
-	//retorna el numero de vampiros
+
 	public int getNumberOfVampires() {
 		return numberOfVampires;
 	}
@@ -65,3 +66,4 @@ public enum Level {
 
 
 }
+

@@ -13,11 +13,16 @@ public class VampireList {
 	
 	//metodo que recibe una posicion, busca dentro de la lista de vampiros
 	//si existe un objeto con las mismas coordenadas y si existe devuelve true
-	public boolean isVlayerHere(int x, int y) {
+	public boolean isVampirerHere(int x, int y, boolean columna) {
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < Vampire.cnt) {
-			isHere = vl[i].equals(x, y);
+		while (!isHere && i < Vampire.getCnt()) {
+			if(!columna) {
+				isHere = vl[i].equals(x, y);
+			}
+			else {
+				isHere = vl[i].equals2(x, y);
+			}
 			i++;
 		}
 		return isHere;
@@ -25,11 +30,8 @@ public class VampireList {
 	
 	//Metodo que crea un nuevo objeto vampiro y lo añade al array
 	//Controla ademas el incremento de
-	public void addElement(int x, int y) {
-		vl[Vampire.cnt] = new Vampire(x, y);
-		Vampire.cnt++;
-		Vampire.totalV++;
-		
+	public void addElement(Vampire v) {
+		vl[Vampire.getCnt()-1] = v;
 	}
 	
 	//metodo que recibe una posicion, busca dentro de la lista de vampiros
@@ -39,7 +41,7 @@ public class VampireList {
 		String vampire;
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < Vampire.cnt) {
+		while (!isHere && i < Vampire.getCnt()) {
 			isHere = vl[i].equals(x, y);
 			i++;
 		}
@@ -58,36 +60,26 @@ public class VampireList {
 	
 	
 
-	//GETTERS & SETTERS
-	//retorna la vida de un vampire en una posicion i:
-	public int vampireHealth(int i) {
-		return vl[i].getHealth();
-	}
-	//dos metodos que devuelven la pos X e Y de un vampiro de la lista:
-	public int getXvampireI(int i) {
-		return vl[i].getX();
-	}
-	public int getYvampireI(int i) {
-		return vl[i].getY();
-		
-	}
+	
 	
 	
 	
 	//Metodo que recibe una posicion, y ejecuta el metodo advanceVampire de la clase Vampire 
 	//sobre el objeto que contie el array de la posicion recibida
-	public void advanceVampire(int i) {
-		vl[i].advanceVampire();
+	public void advanceVampire() {
+		for(int i = 0; i < Vampire.getCnt(); i++) {
+			vl[i].advanceVampire();
+		}
 	}
 	
 	//Metodo que recibe un numero de fila donde se encuentra un slayer
 	//Recorre el array decrementando la salud del primer vampiro que se encuentren en esa fila
-	public void shotVampire(int fila) {
+	public void recivedAttack(int x, int y) {
 		boolean shotter = false;
 		int i = 0;
-		while ((i < Vampire.cnt) && !shotter) {
-			if (vl[i].equals(fila)) {
-				vl[i].setHealth(1);
+		while ((i < Vampire.getCnt()) && !shotter) {
+			if (vl[i].equals2(x,y)) {
+				vl[i].dealDamage();
 				shotter = true;
 			}
 			i++;
@@ -117,60 +109,38 @@ public class VampireList {
 	//El segundo for elimina del array ese ese slayer
 	//Se controla el contador
 	public void removeVampire() {
-		for(int i=0; i < Vampire.cnt; i++) {
+		for(int i=0; i < Vampire.getCnt(); i++) {
 			if (vl[i].isDead()) {
-				for(int j=i; j < Vampire.cnt; j++) {
+				for(int j=i; j < Vampire.getCnt(); j++) {
 					vl[j] = vl[j+1];
 					
 				}
-				Vampire.cnt--;
+				Vampire.setCnt();
 			}
 		}
 	}
 	
 	//Metodo que inicializa el contador y el numero de vampiros que han aparecido a 0
 	public void iniCnt() {
-		Vampire.cnt = 0;
-		Vampire.totalV = 0;
+		Vampire.setCnt(0);
+		Vampire.setTotalV(0);
 	}
 	
-	//Metodo que controla si algun objeto del array se encuentra en la columna 1 (posible fin de partida)
-	public boolean isVampireFinal() {
-		boolean end = false;
-		int i = 0;
-		while(!end && i < this.cnt) {
-			if(vl[i].end()) {
-				end = true;
-			}
-			i++;
-		}
-		return end;
-	}
 	
 	//Metodo que controla si quedan mas vampiros por aparecer (posible fin de partida)
 	public boolean noMoreVampires(int maxVampires) {
 		boolean end = false;
-		if(this.cnt == 0 && this.totalV == maxVampires) {
+		if((Vampire.getCnt() == 0) && (Vampire.getTotalV() == maxVampires)) {
 			end = true;
 		}
 		return end;
 	}
 	
-	//Metodo que recibe una posicion, y devuelve el Health del vampire que contiene esa posicion del array
-		public int getHealth(int pos) {
-			return vl[pos].getHealth();
+	public void attack () {
+		for(int i=0; i < Vampire.getCnt(); i++) {
+			vl[i].VampireAttack();
 		}
-		
-		//COSOS NUEVOS:
-		public void vampireAtack() {
-			
-		for(int i = 0; i < v.getCnt(); i++) {
-			
-			s.bitteSlayer(v.giveBitteX(i), v.giveBitteY(i));					
-		}
-		
 	}
-		
-		
+
 
 }

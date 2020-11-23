@@ -7,15 +7,16 @@ public class Slayer {
 	private int y;
 	private int health;
 	private Game game;
-	public static int cnt = 0;
+	private static int cnt = 0;
 	
 
 	//CONSTRUCTOR
-	public Slayer(int y, int x) {
+	public Slayer(int x, int y, Game game) {
 		this.x = x;
 		this.y = y;
 		this.health = 3;
-		
+		Slayer.cnt++;
+		this.game = game;
 	}
 	
 	//METODOS:
@@ -24,25 +25,8 @@ public class Slayer {
 	public boolean equals(int x, int y) {
 		return (this.x == x && this.y == y);
 	}
-	
-	//Método que devuelve true si el slayer ha muerto, false en caso contrario 
-	public boolean isDead() {
-		return (this.health <= 0);
-	}
 
-	// getters & setters
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
-	}
-	public int getHealth() {
-		return health;
-	}
-	public void setHealth(int health) {
-		this.health -= health;
-	}
+
 	
 	//Sobreescribimos el metodo toString para devolver la vida del slayer con el formato deseado
 	//para su salida por pantalla
@@ -53,5 +37,27 @@ public class Slayer {
 	public void dealDamage() {
 		this.health--;
 	}
+	
+	//changes:
+	public void SlayerAttack() {		
+		if(game.isVampireHere(x, y, true) && health > 0) {
+			game.slayerAttack(x,y);
+		}
+	}
+	
+	public boolean isDead() {
+		return (health <= 0);
+	}
 
+	public static int getCnt() {
+		return cnt;
+	}
+	public static void setCnt(int cnt) {
+		Slayer.cnt = cnt;
+	}
+	public static void setCnt() {
+		Slayer.cnt--;	
+	}
+	
+	
 }

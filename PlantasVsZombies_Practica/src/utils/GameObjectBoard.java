@@ -1,7 +1,7 @@
 package utils;
-
 import Elements.Slayer;
 import Elements.SlayerList;
+import Elements.Vampire;
 import Elements.VampireList;
 
 
@@ -22,40 +22,17 @@ public class GameObjectBoard {
 	   
 	
 	
-	    //Metodo que recibe unas coordenadas, realiza una busqueda y devuelve si existe o no un objeto
-	    //con esas coordenadas
-	    public boolean positionAvaible(int x, int y) {
-			boolean avaible = true;
-			if (avaible) {
-				avaible = !v.isVlayerHere(x, y);
-			}
-			
-			if (avaible) {
-				avaible =  !s.isSlayerHere(x, y);
-			}
-			
-			return avaible;
-		}
 	    
 	    //metodo para añadir un slayer 
-		public void addToS (int x, int y) {
-			s.addElement(x, y);
+		public void addToS (Slayer sl) {
+			s.addElement(sl);
 		}
 		//metodo para añadir un vampiros 
-		public void addToV (int x, int y) {
-			v.addElement(x, y);
+		public void addToV (Vampire vp) {
+			v.addElement(vp);
 		}
-		
-		//Metodo que recibe el numero total de vampiros que aparecen en un nivel
-		//lo compara con el numero de vampiros que han aparecido en esta partida
-		//y devuelve si quedan o no mas vampiros por aparecer
-		public boolean moreVampire(int n) {
-			boolean more = true;
-			if(n == v.getTotalV()) {
-				more = false;
-			}
-			return more;
-		}
+
+	
 		
 		//Metodo que recibe unas coordenadas y devuelve un string con el formato deseado
 		//Primero llamamos al metodo de la clase VampireList, que nos devolvera un string con el formato del vampiro
@@ -71,28 +48,16 @@ public class GameObjectBoard {
 			return pos;
 		}
 		
-		//metodo que devuelve el numero total de vampiros que han aparecido durante el juego
-		public int numberOfV() {
-			return v.getTotalV();
-		}
-		
-		//metodo que devuelve el numero total de vampiros que estan sobre el tablero
-		public int vampiresOnBoard() {
-			return v.getCnt();
-		}
+	
 		
 		//metodo que ejecuta el avance de todos los vampiros del tablero
 		public void advanceVampire() {
-			for(int i = 0; i < v.getCnt(); i++) {
-				if (positionAvaible(v.getXvampireI(i), v.getYvampireI(i)-1)) {
-					v.advanceVampire(i);
-				}
-			}
+				v.advanceVampire();
 		}
 		
 		//Metodo que ejecuta el ataque de todos los slayers del tablero
-		public void slayerAttack() {
-			v.reciveAtack(x,y);
+		public void slayerAttack(int x, int y) {
+			v.recivedAttack(x,y);
 		}
 		
 		//Metodo que ejecuta el ataque de todos los vampiros del tablero
@@ -109,38 +74,25 @@ public class GameObjectBoard {
 			v.removeVampire();
 		}
 		
-		//metodo que resetea los contadores del juego
-		public void resetBoard() {
-			v.iniCnt();
-			s.iniCnt();
-		}
-		
-		
-		
-		//Metodo que chequea un fin del juego, para ello recibe el numero maximo de vampiros que pueden aparecer
-		//Controla el ganador
-		public boolean endGame(int maxVampires) {
-			boolean end = false;
-			if(v.isVampireFinal()) {
-				end = true;
-				System.out.println("GAME OVER \nVampires win");
-			}
-			else if (v.noMoreVampires(maxVampires)){
-				end = true;
-				System.out.println("GAME OVER \nPlayer win");
-			}
-			return end;
-		}
-		
 		
 		public boolean SlayerHere(int x, int y) {
 			return(s.isSlayerHere(x, y));
 						
-			
 		}
-			
-			
-			
-			
-			
+	
+		public boolean VampireHere(int x, int y, boolean columna) {
+			return(v.isVampirerHere(x, y, columna));					
+		}
+		
+		public boolean positionAvaible (int x, int y) {
+			return !(s.isSlayerHere(x, y) || v.isVampirerHere(x, y, false));
+		}
+		
+		public void Attack() {
+			v.attack();
+			s.attack();
+
+		}
+		
+		
 }

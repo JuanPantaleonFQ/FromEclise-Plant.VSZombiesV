@@ -18,7 +18,7 @@ public class SlayerList {
 	public boolean isSlayerHere(int x, int y) {
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < Slayer.cnt) {
+		while (!isHere && i < Slayer.getCnt()) {
 			isHere = sl[i].equals(x, y);
 			i++;
 		}
@@ -26,10 +26,8 @@ public class SlayerList {
 	}
 	
 	//metodo que crea un nuevo objeto slayer y lo añade al array
-	public void addElement(int x, int y) {
-		sl[Slayer.cnt] = new Slayer(y, x);
-		Slayer.cnt++;
-		
+	public void addElement(Slayer s) {
+		sl[Slayer.getCnt()-1] = s;
 	}
 	
 	//metodo que recibe una posicion, busca dentro de la lista de slayers
@@ -39,7 +37,7 @@ public class SlayerList {
 		String slayer;
 		boolean isHere = false;
 		int i = 0;
-		while (!isHere && i < Slayer.cnt) {
+		while (!isHere && i < Slayer.getCnt()) {
 			isHere = sl[i].equals(x, y);
 			i++;
 		}
@@ -76,16 +74,7 @@ public class SlayerList {
 	
 		
 	//---------------------------------------------------------------------------------------
-	
-	//Metodo que recibe una coordenadas de un vampiro y si existe un slayer a su derecha
-	//actualiza su vida decrementandola
-	public void bitteSlayer(int x, int y) {
-		for(int i = 0; i < Slayer.cnt; i++) {
-			if (sl[i].equals(x, y-1)) {
-				sl[i].setHealth(1);
-			}
-		}
-	}
+
 	
 	//Metodo que recorre el array de slayers eliminando los que hayan muerto
 	//El primer for recorre el array completo de slayers
@@ -93,39 +82,38 @@ public class SlayerList {
 	//El segundo for elimina del array ese ese slayer
 	//Se controla el contador
 	public void removeSlayer() {
-		for(int i=0; i < Slayer.cnt; i++) {
+		for(int i=0; i < Slayer.getCnt(); i++) {
 			if (sl[i].isDead()) {
-				for(int j=i; j < (Slayer.cnt-1) ; j++) {
+				for(int j=i; j < (Slayer.getCnt()-1) ; j++) {
 					sl[j] = sl[j+1];
 					
 				}
-				Slayer.cnt--;
+				Slayer.setCnt();
 			}
 		}
 	}
 	
 	//Metodo que inicializa el contador de slayers a 0
 	public void iniCnt() {
-		Slayer.cnt = 0;
+		Slayer.setCnt(0);
 	}
 	
 	public void reciveAtack(int x, int y) {
 		boolean recive = false;
 		int i = 0 ;
-		while(!recive && i < Slayer.cnt) {
+		while(!recive && i < Slayer.getCnt()) {
 			if (sl[i].equals(x,y)) {
 				sl[i].dealDamage();
 				recive = true;
-				
-				
 			}
 			i++;			
 		}
-		
-		
-		
 	}
 	
+	public void attack () {
+		for(int i=0; i < Slayer.getCnt(); i++) {
+			sl[i].SlayerAttack();
+		}
+	}
 	
-
 }
